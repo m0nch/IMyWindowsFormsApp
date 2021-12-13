@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IMyWindowsFormsApp.Mappers;
+using IMyWindowsFormsApp.Models.ViewModels;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,9 @@ namespace IMyWindowsFormsApp
     {
         StudentRepository studentRepository = new StudentRepository();
         StudentService studentService;
-        List<Student> studentsList;
 
         TeacherRepository teacherRepository = new TeacherRepository();
         TeacherService teacherService;
-        List<Teacher> teachersList;
 
         List<string> lastNameList = new List<string>();
 
@@ -23,8 +23,7 @@ namespace IMyWindowsFormsApp
             InitializeComponent();
             studentService = new StudentService(studentRepository);
             teacherService = new TeacherService(teacherRepository);
-            studentsList = new List<Student>();
-            teachersList = new List<Teacher>();
+            //this.Load += delegate { RefreshGridView(); };
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -47,46 +46,48 @@ namespace IMyWindowsFormsApp
             studentService.Add(new Student() { LastName = "Walker", FirstName = "Monika", Age = 21 });
             studentService.Add(new Student() { LastName = "Wilmington", FirstName = "Andre", Age = 21 });
 
-            studentsList = studentRepository.GetAll();
-            grdMain.DataSource = studentsList;
+            var students = studentRepository.GetAll().MapStudentsToViewModel();
+            grdMain.DataSource = students;
 
             lblInfo.Visible = true;
             lblInfo.Text = "Students Information";
 
-            lastNameList.Clear();
-            foreach (var item in studentsList)
-            {
-                lastNameList.Add(item.LastName);
-            }
 
+            foreach (var item in students)
+            {
+                lastNameList.Add(item.FullName);
+            }
             SetCmbLastName();
+
             ReadSelectedRow();
         }
         private void tsMenuTeachers_Click(object sender, EventArgs e)
         {
             tsMenuTeachers.Checked = true;
             tsMenuStudents.Checked = false;
-            
+
             teacherService.Add(new Teacher() { LastName = "Williams", FirstName = "Michael", Age = 33 });
             teacherService.Add(new Teacher() { LastName = "Anderson", FirstName = "Robert", Age = 41 });
             teacherService.Add(new Teacher() { LastName = "Wilson", FirstName = "William", Age = 44 });
             teacherService.Add(new Teacher() { LastName = "Harris", FirstName = "Richard", Age = 54 });
             teacherService.Add(new Teacher() { LastName = "Clark", FirstName = "Thomas", Age = 48 });
 
-            teachersList = teacherRepository.GetAll();
-            grdMain.DataSource = teachersList;
-                       
+            var teachers = teacherRepository.GetAll().MapTeachersToViewModel();
+            grdMain.DataSource = teachers;
+
+
+            SetCmbLastName();
+
             lblInfo.Visible = true;
             lblInfo.Text = "Teachers Information";
 
-            lastNameList.Clear();
-            foreach (var item in teachersList)
+            foreach (var item in teachers)
             {
-                lastNameList.Add(item.LastName);
+                lastNameList.Add(item.FullName);
             }
 
-            SetCmbLastName();
             ReadSelectedRow();
+            //SetCmbLastName();
         }
 
         private void SetCmbLastName()
@@ -98,7 +99,14 @@ namespace IMyWindowsFormsApp
             cmbLastName.DataSource = lastNameList;
             cmbLastName.SelectedIndex = -1;
         }
-        private void AddItemToList(string str)
+        private void AddItemToList(StudentRepository repository, string str)
+        {
+            if (!lastNameList.Contains(str))
+            {
+                lastNameList.Add(str);
+            }
+        }
+        private void AddItemToList(TeacherRepository repository, string str)
         {
             if (!lastNameList.Contains(str))
             {
@@ -132,10 +140,10 @@ namespace IMyWindowsFormsApp
                 student.FirstName = txtFirstName.Text;
                 student.Age = Convert.ToInt32(txtAge.Text);
                 studentService.Add(student);
-                AddItemToList(student.LastName);
+                AddItemToList(studentRepository, student.LastName);
                 int index = studentRepository.IndexOf(student);
                 SetCmbLastName();
-                RefreshGridView();
+                RefreshStudentsView();
                 cmbLastName.SelectedItem = txtLastName.Text.ToString();
                 grdMain.Rows[index].Selected = true;
                 grdMain.FirstDisplayedScrollingRowIndex = grdMain.Rows[index].Index;
@@ -148,10 +156,10 @@ namespace IMyWindowsFormsApp
                 teacher.FirstName = txtFirstName.Text;
                 teacher.Age = Convert.ToInt32(txtAge.Text);
                 teacherService.Add(teacher);
-                AddItemToList(teacher.LastName);
+                AddItemToList(teacherRepository, teacher.LastName);
                 int index = teacherRepository.IndexOf(teacher);
                 SetCmbLastName();
-                RefreshGridView();
+                RefreshTeachersView();
                 cmbLastName.SelectedItem = txtLastName.Text.ToString();
                 grdMain.Rows[index].Selected = true;
                 grdMain.FirstDisplayedScrollingRowIndex = grdMain.Rows[index].Index;
@@ -166,18 +174,18 @@ namespace IMyWindowsFormsApp
                 Student student = studentService.Get(id);
                 string lastName = student.LastName;
                 studentService.Remove(student);
-                RefreshGridView();
+                RefreshStudentsView();
                 ReadSelectedRow();
-                RemoveItemToList(studentsList, lastName);
+                cmbLastName.DataSource = studentService.GetAll().MapStudentsToViewModel().Select(x => x.FullName).ToArray();
             }
             else if (tsMenuTeachers.Checked)
             {
                 Teacher teacher = teacherService.Get(id);
                 string lastName = teacher.LastName;
                 teacherService.Remove(teacher);
-                RefreshGridView();
+                RefreshTeachersView();
                 ReadSelectedRow();
-                RemoveItemToList(teachersList, lastName);
+                cmbLastName.DataSource = teacherService.GetAll().MapTeachersToViewModel().Select(x => x.FullName).ToArray();
             }
         }
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -191,6 +199,7 @@ namespace IMyWindowsFormsApp
                 student.LastName = txtLastName.Text;
                 student.FirstName = txtFirstName.Text;
                 studentService.Update(student);
+                RefreshStudentsView();
             }
             else if (tsMenuTeachers.Checked)
             {
@@ -200,8 +209,8 @@ namespace IMyWindowsFormsApp
                 teacher.LastName = txtLastName.Text;
                 teacher.FirstName = txtFirstName.Text;
                 teacherService.Update(teacher);
+                RefreshTeachersView();
             }
-            RefreshGridView();
             ReadSelectedRow();
         }
         private void grdStudent_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -209,17 +218,14 @@ namespace IMyWindowsFormsApp
             ReadSelectedRow();
             cmbLastName.SelectedItem = txtLastName.Text.ToString();
         }
-        private void RefreshGridView()
+        private void RefreshStudentsView()
         {
-            grdMain.DataSource = null;
-            if (tsMenuStudents.Checked)
-            {
-                grdMain.DataSource = studentsList;
-            }
-            else if (tsMenuTeachers.Checked)
-            {
-                grdMain.DataSource = teachersList; ;
-            }
+            grdMain.DataSource = studentService.GetAll().MapStudentsToViewModel(); ;
+        }
+
+        private void RefreshTeachersView()
+        {
+            grdMain.DataSource = teacherService.GetAll().MapTeachersToViewModel(); ;
         }
         private void ReadSelectedRow()
         {
@@ -227,8 +233,8 @@ namespace IMyWindowsFormsApp
             {
                 DataGridViewRow row = grdMain.SelectedRows[0];
                 txtId.Text = row.Cells["id"].Value.ToString();
-                txtLastName.Text = row.Cells["stLastName"].Value.ToString();
-                txtFirstName.Text = row.Cells["stFirstName"].Value.ToString();
+                txtLastName.Text = row.Cells["stFullName"].Value.ToString().Split(' ').Last();
+                txtFirstName.Text = row.Cells["stFullName"].Value.ToString().Split(' ').First();
                 txtAge.Text = row.Cells["stAge"].Value.ToString();
             }
         }
@@ -248,18 +254,18 @@ namespace IMyWindowsFormsApp
                 string lastName = cmbLastName.SelectedValue.ToString();
                 if (tsMenuStudents.Checked)
                 {
-                    Student student = studentsList.FirstOrDefault(x => x.LastName == lastName);
+                    StudentViewModel student = studentService.GetAll().MapStudentsToViewModel().FirstOrDefault(x => x.FullName == lastName);
                     txtId.Text = student.Id.ToString();
-                    txtLastName.Text = student.LastName.ToString();
-                    txtFirstName.Text = student.FirstName.ToString();
+                    txtLastName.Text = student.FullName.Split(' ').Last();
+                    txtFirstName.Text = student.FullName.Split(' ').First();
                     txtAge.Text = student.Age.ToString();
                 }
                 else if (tsMenuTeachers.Checked)
                 {
-                    Teacher teacher = teachersList.FirstOrDefault(x => x.LastName == lastName);
+                    TeacherViewModel teacher = teacherService.GetAll().MapTeachersToViewModel().FirstOrDefault(x => x.FullName == lastName);
                     txtId.Text = teacher.Id.ToString();
-                    txtLastName.Text = teacher.LastName.ToString();
-                    txtFirstName.Text = teacher.FirstName.ToString();
+                    txtLastName.Text = teacher.FullName.Split(' ').Last();
+                    txtFirstName.Text = teacher.FullName.Split(' ').First();
                     txtAge.Text = teacher.Age.ToString();
                 }
                 foreach (DataGridViewRow row in grdMain.Rows)
@@ -271,5 +277,6 @@ namespace IMyWindowsFormsApp
                 }
             }
         }
+
     }
 }

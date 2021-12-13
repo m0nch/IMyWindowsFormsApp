@@ -46,7 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\TeacherMapper.cs" />
+    <Compile Include="Mappers\StudentMapper.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\ViewModels\TeacherViewModel.cs" />
+    <Compile Include="Models\ViewModels\StudentViewModel.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -66,6 +70,7 @@
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Services\TeacherService.cs" />
     <Compile Include="Services\StudentService.cs" />
+    <Compile Include="Utils\ComboboxEnum.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

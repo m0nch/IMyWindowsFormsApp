@@ -42,16 +42,15 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.grdMain = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblSearch = new System.Windows.Forms.Label();
             this.cmbLastName = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsMenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuStudents = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuTeachers = new System.Windows.Forms.ToolStripMenuItem();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -186,8 +185,7 @@
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.stLastName,
-            this.stFirstName,
+            this.stFullName,
             this.stAge});
             this.grdMain.Location = new System.Drawing.Point(12, 226);
             this.grdMain.MultiSelect = false;
@@ -198,30 +196,6 @@
             this.grdMain.TabIndex = 6;
             this.grdMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdStudent_CellClick);
             this.grdMain.SelectionChanged += new System.EventHandler(this.grdStudent_SelectionChanged);
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "Id";
-            this.id.HeaderText = "Student Id";
-            this.id.Name = "id";
-            // 
-            // stLastName
-            // 
-            this.stLastName.DataPropertyName = "LastName";
-            this.stLastName.HeaderText = "LastName";
-            this.stLastName.Name = "stLastName";
-            // 
-            // stFirstName
-            // 
-            this.stFirstName.DataPropertyName = "FirstName";
-            this.stFirstName.HeaderText = "FirstName";
-            this.stFirstName.Name = "stFirstName";
-            // 
-            // stAge
-            // 
-            this.stAge.DataPropertyName = "Age";
-            this.stAge.HeaderText = "Age";
-            this.stAge.Name = "stAge";
             // 
             // lblSearch
             // 
@@ -267,16 +241,34 @@
             // tsMenuStudents
             // 
             this.tsMenuStudents.Name = "tsMenuStudents";
-            this.tsMenuStudents.Size = new System.Drawing.Size(180, 22);
+            this.tsMenuStudents.Size = new System.Drawing.Size(130, 22);
             this.tsMenuStudents.Text = "Students";
             this.tsMenuStudents.Click += new System.EventHandler(this.tsMenuStudents_Click);
             // 
             // tsMenuTeachers
             // 
             this.tsMenuTeachers.Name = "tsMenuTeachers";
-            this.tsMenuTeachers.Size = new System.Drawing.Size(180, 22);
+            this.tsMenuTeachers.Size = new System.Drawing.Size(130, 22);
             this.tsMenuTeachers.Text = "Teachers";
             this.tsMenuTeachers.Click += new System.EventHandler(this.tsMenuTeachers_Click);
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "Id";
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            // 
+            // stFullName
+            // 
+            this.stFullName.DataPropertyName = "FullName";
+            this.stFullName.HeaderText = "Name";
+            this.stFullName.Name = "stFullName";
+            // 
+            // stAge
+            // 
+            this.stAge.DataPropertyName = "Age";
+            this.stAge.HeaderText = "Age";
+            this.stAge.Name = "stAge";
             // 
             // MainForm
             // 
@@ -326,16 +318,15 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView grdMain;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stAge;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.ComboBox cmbLastName;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsMenuFile;
         private System.Windows.Forms.ToolStripMenuItem tsMenuStudents;
         private System.Windows.Forms.ToolStripMenuItem tsMenuTeachers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stAge;
     }
 }
 
