@@ -33,7 +33,6 @@ namespace IMyWindowsFormsApp
 
         private void tsMenuStudents_Click(object sender, EventArgs e)
         {
-            //grdMain.DataSource = null;
             tsMenuStudents.Checked = true;
             tsMenuTeachers.Checked = false;
 
@@ -65,7 +64,6 @@ namespace IMyWindowsFormsApp
         }
         private void tsMenuTeachers_Click(object sender, EventArgs e)
         {
-            //grdMain.DataSource = null;
             tsMenuTeachers.Checked = true;
             tsMenuStudents.Checked = false;
             
@@ -100,14 +98,7 @@ namespace IMyWindowsFormsApp
             cmbLastName.DataSource = lastNameList;
             cmbLastName.SelectedIndex = -1;
         }
-        private void AddItemToList(StudentRepository repository, string str)
-        {
-            if (!lastNameList.Contains(str))
-            {
-                lastNameList.Add(str);
-            }
-        }
-        private void AddItemToList(TeacherRepository repository, string str)
+        private void AddItemToList(string str)
         {
             if (!lastNameList.Contains(str))
             {
@@ -141,7 +132,7 @@ namespace IMyWindowsFormsApp
                 student.FirstName = txtFirstName.Text;
                 student.Age = Convert.ToInt32(txtAge.Text);
                 studentService.Add(student);
-                AddItemToList(studentRepository, student.LastName);
+                AddItemToList(student.LastName);
                 int index = studentRepository.IndexOf(student);
                 SetCmbLastName();
                 RefreshGridView();
@@ -157,7 +148,7 @@ namespace IMyWindowsFormsApp
                 teacher.FirstName = txtFirstName.Text;
                 teacher.Age = Convert.ToInt32(txtAge.Text);
                 teacherService.Add(teacher);
-                AddItemToList(teacherRepository, teacher.LastName);
+                AddItemToList(teacher.LastName);
                 int index = teacherRepository.IndexOf(teacher);
                 SetCmbLastName();
                 RefreshGridView();
