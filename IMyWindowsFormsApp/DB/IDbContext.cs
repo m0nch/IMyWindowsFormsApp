@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace IMyWindowsFormsApp
 {
-    interface IDbContext<T>
+    public interface IDbContext
     {
-        T model { get; set; }
+        List<Teacher>  Teachers { get; set; }
+        List<Student> Students { get; set; }
     }
 }

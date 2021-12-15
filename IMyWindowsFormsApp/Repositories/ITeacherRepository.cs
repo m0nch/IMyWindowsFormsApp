@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace IMyWindowsFormsApp
 {
-    public interface ITeacherService
+    public interface ITeacherRepository
     {
         void Add(Teacher model);
         void Remove(Teacher model);
-        void Update(Teacher model);
         Teacher Get(Guid id);
+        void Update(Teacher model, int index);
         List<Teacher> GetAll();
         int IndexOf(Teacher model);
+
     }
 }

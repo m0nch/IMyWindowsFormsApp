@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace IMyWindowsFormsApp
 {
-    public class DbContext<T> : IDbContext<T>
+    public class DbContext : IDbContext
     {
-        public T model { get ; set; }
-        public List<T> models;
+        public List<Teacher> Teachers { get; set; }
+        public List<Student> Students { get; set; }
+
+        public DbContext()
+        {
+            Teachers = new List<Teacher>();
+            Students = new List<Student>();
+        }
     }
 }

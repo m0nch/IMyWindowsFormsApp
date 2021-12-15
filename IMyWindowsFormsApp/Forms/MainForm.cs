@@ -10,92 +10,63 @@ namespace IMyWindowsFormsApp
 {
     public partial class MainForm : Form
     {
-        private readonly StudentService _studentService;
 
-        private readonly TeacherService _teacherService;
+        private readonly ITeacherService _teacherService;
 
-        List<string> lastNameList = new List<string>();
-
-        public MainForm(StudentService studentService, TeacherService teacherService)
+        public MainForm(ITeacherService teacherService)
         {
             InitializeComponent();
-            _studentService = studentService;
             _teacherService = teacherService;
-            //this.Load += delegate { RefreshGridView(); };
         }
-
-
-        private void ShowForm(Form frm)
-        {
-            frm.MdiParent = this;
-            frm.Show();
-            frm.Activate();
-            frm.WindowState = FormWindowState.Maximized;
-        }
+        
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            RefreshTeachers();
         }
 
-        private void tsMenuStudents_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            StudentsForm.Instance.LoadServices(_studentService, _teacherService);
-            ShowForm(StudentsForm.Instance);
-            tsMenuStudents.Checked = true;
-            tsMenuTeachers.Checked = false;
-
-            //_studentService.Add(new Student() { LastName = "Doe", FirstName = "Jhon", Age = 25 });
-            //_studentService.Add(new Student() { LastName = "Davis", FirstName = "Jane", Age = 27 });
-            //_studentService.Add(new Student() { LastName = "Parker", FirstName = "Sara", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Simpson", FirstName = "Jessica", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Washington", FirstName = "Andre", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Wilson", FirstName = "Garry", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Wiliams", FirstName = "Amanda", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Wanderbuilt", FirstName = "Karen", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Walker", FirstName = "Monika", Age = 21 });
-            //_studentService.Add(new Student() { LastName = "Wilmington", FirstName = "Andre", Age = 21 });
-
-            //var students = _studentService.GetAll().MapStudentsToViewModel();
-
-
-            //foreach (var item in students)
-            //{
-            //    lastNameList.Add(item.FullName);
-            //}
-            ////SetCmbLastName();
-
+            Teacher teacher = new Teacher
+            {
+                LastName = txtLastName.Text,
+                FirstName = txtFirstName.Text,
+                Age = Convert.ToInt32(txtAge.Text)
+            };
+            _teacherService.Add(teacher);
+            RefreshTeachers();
         }
-        private void tsMenuTeachers_Click(object sender, EventArgs e)
+
+        private void btnRemove_Click(object sender, EventArgs e)
         {
-            TeachersForm.Instance.LoadServices(_studentService, _teacherService);
-            ShowForm(TeachersForm.Instance);
-            tsMenuTeachers.Checked = true;
-            tsMenuStudents.Checked = false;
-
-            //_teacherService.Add(new Teacher() { LastName = "Williams", FirstName = "Michael", Age = 33 });
-            //_teacherService.Add(new Teacher() { LastName = "Anderson", FirstName = "Robert", Age = 41 });
-            //_teacherService.Add(new Teacher() { LastName = "Wilson", FirstName = "William", Age = 44 });
-            //_teacherService.Add(new Teacher() { LastName = "Harris", FirstName = "Richard", Age = 54 });
-            //_teacherService.Add(new Teacher() { LastName = "Clark", FirstName = "Thomas", Age = 48 });
-
-            //var teachers = _teacherService.GetAll().MapTeachersToViewModel();
-
-
-            ////SetCmbLastName();
-
-
-            //foreach (var item in teachers)
-            //{
-            //    lastNameList.Add(item.FullName);
-            //}
-
 
         }
 
-        private void SetCmbLastName()
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
         }
 
+        private void grdTeachers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowRow();
+        }
+        private void RefreshTeachers()
+        {
+            grdTeachers.ClearSelection();
+            grdTeachers.DataSource = _teacherService.GetAll().MapTeachersToViewModel();
+            if (grdTeachers.Rows.Count > 0)
+            {
+                grdTeachers.Rows[0].Selected = true;
+            }
+        }
 
+        private void ShowRow()
+        {
+            lblGuid.Text = grdTeachers.SelectedRows[0].Cells["Id"].Value.ToString();
+            string[] names = grdTeachers.SelectedRows[0].Cells["tchFullName"].Value.ToString().Split(' ');
+            txtLastName.Text = names.Last();
+            txtFirstName.Text = names.First();
+            txtAge.Text = grdTeachers.SelectedRows[0].Cells["tchAge"].Value.ToString();
+        }
     }
 }

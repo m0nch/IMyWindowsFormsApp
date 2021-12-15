@@ -5,9 +5,9 @@ namespace IMyWindowsFormsApp
 {
     public class TeacherService : ITeacherService
     {
-        private readonly TeacherRepository _teacherRepository;
+        private readonly ITeacherRepository _teacherRepository;
 
-        public TeacherService(TeacherRepository teacherRepository)
+        public TeacherService(ITeacherRepository teacherRepository)
         {
             _teacherRepository = teacherRepository;
         }
@@ -15,17 +15,14 @@ namespace IMyWindowsFormsApp
         {
             _teacherRepository.Add(model);
         }
-
         public Teacher Get(Guid id)
         {
             return _teacherRepository.Get(id);
         }
-
         public List<Teacher> GetAll()
         {
             return _teacherRepository.GetAll();
         }
-
         public void Remove(Teacher model)
         {
             _teacherRepository.Remove(model);
@@ -34,7 +31,6 @@ namespace IMyWindowsFormsApp
         {
             return _teacherRepository.IndexOf(model);
         }
-
         public void Update(Teacher model) 
         {
             var oldTeacher = _teacherRepository.Get(model.Id);

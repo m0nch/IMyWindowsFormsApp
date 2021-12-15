@@ -17,13 +17,14 @@ namespace IMyWindowsFormsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            StudentRepository studentRepository = new StudentRepository();
-            StudentService studentService = new StudentService(studentRepository);
+            IDbContext dbContext = new DbContext();
+            IStudentRepository studentRepository = new StudentRepository(dbContext);
+            IStudentService studentService = new StudentService(studentRepository);
 
-            TeacherRepository teacherRepository = new TeacherRepository();
-            TeacherService teacherService = new TeacherService(teacherRepository);
+            ITeacherRepository teacherRepository = new TeacherRepository(dbContext);
+            ITeacherService teacherService = new TeacherService(teacherRepository);
 
-            Application.Run(new MainForm(studentService, teacherService));
+            Application.Run(new MainForm(teacherService));
         }
     }
 }

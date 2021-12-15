@@ -6,29 +6,46 @@ using System.Threading.Tasks;
 
 namespace IMyWindowsFormsApp
 {
-    public class StudentRepository : BaseRepository<Student>
+    public class StudentRepository : IStudentRepository
     {
-        public override Student Get(Guid id)
+        private readonly IDbContext _dbContext;
+        public StudentRepository(IDbContext dbContext)
         {
-            return models.FirstOrDefault(x => x.Id == id);
+            _dbContext = dbContext;
         }
 
-        public override List<Student> GetAllByTeacher(Guid id)
+        public void Add(Student model)
         {
-            List<Student> group = new List<Student>();
-            for (int i = 0; i < models.Count; i++)
-            {
-                if (models[i].teacherId == id)
-                {
-                    group.Add(models[i]);
-                }
-            }
-            return group;
-        }
-        public override int IndexOf(Student model)
-        {
-            return models.IndexOf(model);
+            _dbContext.Students.Add(model);
         }
 
+        public Student Get(Guid id)
+        {
+            return _dbContext.Students.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<Student> GetAll()
+        {
+            return _dbContext.Students;
+        }
+
+        public List<Student> GetAllByTeacher(Guid id)
+        {           
+            return _dbContext.Students.Where(x => x.teacherId == id).ToList();
+        }
+        public int IndexOf(Student model)
+        {
+            return _dbContext.Students.IndexOf(model);
+        }
+
+        public void Remove(Student model)
+        {
+            _dbContext.Students.Remove(model);
+        }
+
+        public void Update(Student model, int index)
+        {
+            _dbContext.Students[index] = model;
+        }
     }
 }

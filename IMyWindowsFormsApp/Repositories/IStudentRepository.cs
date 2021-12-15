@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace IMyWindowsFormsApp
 {
-    interface IStudentRepository : IBaseRepository<Student>
+    public interface IStudentRepository
     {
+        void Add(Student model);
+        void Remove(Student model);
+        Student Get(Guid id);
+        void Update(Student model, int index);
+        List<Student> GetAll();
+        List<Student> GetAllByTeacher(Guid id);
+        int IndexOf(Student model);
     }
 }
