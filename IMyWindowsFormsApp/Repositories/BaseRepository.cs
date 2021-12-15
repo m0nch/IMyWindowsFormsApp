@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace IMyWindowsFormsApp
 {
-    class BaseRepository<T> : IBaseRepository<T>
+    public class BaseRepository<T> : DbContext<T>, IDbContext<T>, IBaseRepository<T>
     {
-        public List<T> models;
+        //public List<T> models;
 
         public BaseRepository()
         {
@@ -36,9 +36,13 @@ namespace IMyWindowsFormsApp
         {
             return models;
         }
-        public int IndexOf(T model)
+        public virtual int IndexOf(T model)
         {
             return models.IndexOf(model);
+        }
+        public virtual List<T> GetAllByTeacher(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

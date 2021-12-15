@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace IMyWindowsFormsApp
 {
-    class TeacherRepository : BaseRepository<Teacher>
+    public class TeacherRepository : BaseRepository<Teacher>
     {
         public override Teacher Get(Guid id)
         {
             return models.FirstOrDefault(x => x.Id == id);
+        }
+
+        public override int IndexOf(Teacher model)
+        {
+            return models.IndexOf(model);
         }
 
     }

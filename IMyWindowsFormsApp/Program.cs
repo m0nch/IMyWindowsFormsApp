@@ -16,7 +16,14 @@ namespace IMyWindowsFormsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            StudentRepository studentRepository = new StudentRepository();
+            StudentService studentService = new StudentService(studentRepository);
+
+            TeacherRepository teacherRepository = new TeacherRepository();
+            TeacherService teacherService = new TeacherService(teacherRepository);
+
+            Application.Run(new MainForm(studentService, teacherService));
         }
     }
 }

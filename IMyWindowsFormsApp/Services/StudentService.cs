@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IMyWindowsFormsApp
 {
-    class StudentService : IStudentService
+    public class StudentService : IStudentService
     {
         private readonly StudentRepository _studentRepository;
 
@@ -25,13 +25,21 @@ namespace IMyWindowsFormsApp
         {
             return _studentRepository.GetAll();
         }
-
+        public List<Student> GetAllByTeacher(Guid id)
+        {
+            return _studentRepository.GetAllByTeacher(id);
+        }
         public void Remove(Student model)
         {
             _studentRepository.Remove(model);
         }
 
-        public void Update(Student model) 
+        public int IndexOf(Student model)
+        {
+            return _studentRepository.IndexOf(model);
+        }
+
+        public void Update(Student model)
         {
             var oldStudent = _studentRepository.Get(model.Id);
             var index = _studentRepository.IndexOf(oldStudent);

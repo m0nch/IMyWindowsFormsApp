@@ -18,6 +18,7 @@ namespace IMyWindowsFormsApp
 
         List<T> GetAll();
 
+        List<T> GetAllByTeacher(Guid id);
         int IndexOf(T model);
 
     }

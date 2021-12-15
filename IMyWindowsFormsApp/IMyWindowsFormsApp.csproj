@@ -46,6 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\DbTeacherContext.cs" />
+    <Compile Include="DB\DbStudentContext.cs" />
+    <Compile Include="DB\DbContext.cs" />
+    <Compile Include="DB\IDbContext.cs" />
+    <Compile Include="Forms\AddEditStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddEditStudentForm.Designer.cs">
+      <DependentUpon>AddEditStudentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StudentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StudentsForm.Designer.cs">
+      <DependentUpon>StudentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TeachersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TeachersForm.Designer.cs">
+      <DependentUpon>TeachersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mappers\TeacherMapper.cs" />
     <Compile Include="Mappers\StudentMapper.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -71,6 +93,15 @@
     <Compile Include="Services\TeacherService.cs" />
     <Compile Include="Services\StudentService.cs" />
     <Compile Include="Utils\ComboboxEnum.cs" />
+    <EmbeddedResource Include="Forms\AddEditStudentForm.resx">
+      <DependentUpon>AddEditStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StudentsForm.resx">
+      <DependentUpon>StudentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TeachersForm.resx">
+      <DependentUpon>TeachersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +114,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\Teacher.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

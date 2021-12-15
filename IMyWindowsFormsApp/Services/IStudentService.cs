@@ -12,6 +12,9 @@ namespace IMyWindowsFormsApp
         void Remove(Student model);
         void Update(Student model);
         Student Get(Guid id);
-        List<Student> GetAll();
+        List<Student> GetAllByTeacher(Guid id);
+
+        int IndexOf(Student model);
+
     }
 }

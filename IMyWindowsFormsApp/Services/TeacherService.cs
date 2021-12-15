@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IMyWindowsFormsApp
 {
-    class TeacherService : ITeacherService
+    public class TeacherService : ITeacherService
     {
         private readonly TeacherRepository _teacherRepository;
 
@@ -29,6 +29,10 @@ namespace IMyWindowsFormsApp
         public void Remove(Teacher model)
         {
             _teacherRepository.Remove(model);
+        }
+        public int IndexOf(Teacher model)
+        {
+            return _teacherRepository.IndexOf(model);
         }
 
         public void Update(Teacher model) 

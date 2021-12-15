@@ -13,5 +13,7 @@ namespace IMyWindowsFormsApp
         void Update(Teacher model);
         Teacher Get(Guid id);
         List<Teacher> GetAll();
+        int IndexOf(Teacher model);
+
     }
 }
