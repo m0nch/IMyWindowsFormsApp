@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>IMyWindowsFormsApp</RootNamespace>
     <AssemblyName>IMyWindowsFormsApp</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +49,12 @@
   <ItemGroup>
     <Compile Include="DB\DbContext.cs" />
     <Compile Include="DB\IDbContext.cs" />
+    <Compile Include="Forms\SecondForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SecondForm.Designer.cs">
+      <DependentUpon>SecondForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mappers\TeacherMapper.cs" />
     <Compile Include="Mappers\StudentMapper.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -70,7 +77,9 @@
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Services\TeacherService.cs" />
     <Compile Include="Services\StudentService.cs" />
-    <Compile Include="Utils\ComboboxEnum.cs" />
+    <EmbeddedResource Include="Forms\SecondForm.resx">
+      <DependentUpon>SecondForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,8 +91,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Properties\DataSources\Teacher.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

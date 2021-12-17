@@ -31,7 +31,7 @@ namespace IMyWindowsFormsApp
 
         public List<Student> GetAllByTeacher(Guid id)
         {           
-            return _dbContext.Students.Where(x => x.teacherId == id).ToList();
+            return _dbContext.Students.Where(x => x.TeacherId == id).ToList();
         }
         public int IndexOf(Student model)
         {

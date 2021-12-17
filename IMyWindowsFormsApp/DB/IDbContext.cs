@@ -8,7 +8,7 @@ namespace IMyWindowsFormsApp
 {
     public interface IDbContext
     {
-        List<Teacher>  Teachers { get; set; }
+        List<Teacher> Teachers { get; set; }
         List<Student> Students { get; set; }
     }
 }

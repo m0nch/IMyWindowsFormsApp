@@ -18,7 +18,8 @@ namespace IMyWindowsFormsApp.Mappers
                 {
                     Id=student.Id,
                     FullName=$"{student.FirstName} {student.LastName}",
-                    Age=student.Age
+                    Age=student.Age,
+                    TeacherId = student.TeacherId
                 });
             }
             return _students;

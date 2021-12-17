@@ -1,6 +1,6 @@
 ﻿namespace IMyWindowsFormsApp
 {
-    partial class MainForm
+    partial class SecondForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,13 +40,16 @@
             this.txtAge = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.grdTeachers = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tchFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tchAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdStudents = new System.Windows.Forms.DataGridView();
             this.lblGuid = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)(this.grdTeachers)).BeginInit();
+            this.lblTGuid = new System.Windows.Forms.Label();
+            this.lblTId = new System.Windows.Forms.Label();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeacherId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,9 +62,9 @@
             this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.Location = new System.Drawing.Point(21, 18);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(168, 18);
+            this.lblInfo.Size = new System.Drawing.Size(164, 18);
             this.lblInfo.TabIndex = 10;
-            this.lblInfo.Text = "Teachers Information";
+            this.lblInfo.Text = "Students Information";
             // 
             // lblId
             // 
@@ -160,9 +163,9 @@
             this.txtLastName.Size = new System.Drawing.Size(358, 22);
             this.txtLastName.TabIndex = 16;
             // 
-            // grdTeachers
+            // grdStudents
             // 
-            this.grdTeachers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -170,52 +173,23 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdTeachers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdTeachers.ColumnHeadersHeight = 30;
-            this.grdTeachers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.tchFullName,
-            this.tchAge});
-            this.grdTeachers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdTeachers.Location = new System.Drawing.Point(0, 0);
-            this.grdTeachers.MultiSelect = false;
-            this.grdTeachers.Name = "grdTeachers";
-            this.grdTeachers.ReadOnly = true;
-            this.grdTeachers.RowHeadersVisible = false;
-            this.grdTeachers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdTeachers.Size = new System.Drawing.Size(586, 273);
-            this.grdTeachers.TabIndex = 22;
-            this.grdTeachers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTeachers_CellClick);
-            this.grdTeachers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTeachers_CellDoubleClick);
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.id.DataPropertyName = "Id";
-            this.id.FillWeight = 11F;
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // tchFullName
-            // 
-            this.tchFullName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tchFullName.DataPropertyName = "FullName";
-            this.tchFullName.FillWeight = 7F;
-            this.tchFullName.HeaderText = "Name";
-            this.tchFullName.Name = "tchFullName";
-            this.tchFullName.ReadOnly = true;
-            this.tchFullName.Width = 215;
-            // 
-            // tchAge
-            // 
-            this.tchAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tchAge.DataPropertyName = "Age";
-            this.tchAge.FillWeight = 2F;
-            this.tchAge.HeaderText = "Age";
-            this.tchAge.Name = "tchAge";
-            this.tchAge.ReadOnly = true;
-            this.tchAge.Width = 68;
+            this.stFullName,
+            this.stAge,
+            this.TeacherId});
+            this.grdStudents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdStudents.Location = new System.Drawing.Point(0, 0);
+            this.grdStudents.MultiSelect = false;
+            this.grdStudents.Name = "grdStudents";
+            this.grdStudents.ReadOnly = true;
+            this.grdStudents.RowHeadersVisible = false;
+            this.grdStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdStudents.Size = new System.Drawing.Size(613, 273);
+            this.grdStudents.TabIndex = 22;
+            this.grdStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdStudents_CellClick);
             // 
             // lblGuid
             // 
@@ -236,6 +210,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.lblTGuid);
+            this.splitContainer1.Panel1.Controls.Add(this.lblTId);
             this.splitContainer1.Panel1.Controls.Add(this.lblInfo);
             this.splitContainer1.Panel1.Controls.Add(this.lblGuid);
             this.splitContainer1.Panel1.Controls.Add(this.txtLastName);
@@ -251,21 +227,75 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.grdTeachers);
-            this.splitContainer1.Size = new System.Drawing.Size(586, 553);
+            this.splitContainer1.Panel2.Controls.Add(this.grdStudents);
+            this.splitContainer1.Size = new System.Drawing.Size(613, 553);
             this.splitContainer1.SplitterDistance = 276;
             this.splitContainer1.TabIndex = 24;
             // 
-            // MainForm
+            // lblTGuid
+            // 
+            this.lblTGuid.AutoSize = true;
+            this.lblTGuid.Location = new System.Drawing.Point(108, 170);
+            this.lblTGuid.Name = "lblTGuid";
+            this.lblTGuid.Size = new System.Drawing.Size(46, 13);
+            this.lblTGuid.TabIndex = 25;
+            this.lblTGuid.Text = "lblTGuid";
+            this.lblTGuid.Visible = false;
+            // 
+            // lblTId
+            // 
+            this.lblTId.AutoSize = true;
+            this.lblTId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTId.Location = new System.Drawing.Point(21, 170);
+            this.lblTId.Name = "lblTId";
+            this.lblTId.Size = new System.Drawing.Size(75, 15);
+            this.lblTId.TabIndex = 24;
+            this.lblTId.Text = "Teacher Id";
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "Id";
+            this.id.FillWeight = 10F;
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // stFullName
+            // 
+            this.stFullName.DataPropertyName = "FullName";
+            this.stFullName.FillWeight = 5F;
+            this.stFullName.HeaderText = "Name";
+            this.stFullName.Name = "stFullName";
+            this.stFullName.ReadOnly = true;
+            // 
+            // stAge
+            // 
+            this.stAge.DataPropertyName = "Age";
+            this.stAge.FillWeight = 2F;
+            this.stAge.HeaderText = "Age";
+            this.stAge.Name = "stAge";
+            this.stAge.ReadOnly = true;
+            // 
+            // TeacherId
+            // 
+            this.TeacherId.DataPropertyName = "TeacherId";
+            this.TeacherId.FillWeight = 1F;
+            this.TeacherId.HeaderText = "TeacherId";
+            this.TeacherId.Name = "TeacherId";
+            this.TeacherId.ReadOnly = true;
+            this.TeacherId.Visible = false;
+            // 
+            // SecondForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 553);
+            this.ClientSize = new System.Drawing.Size(613, 553);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "MainForm";
-            this.Text = "Teachers";
+            this.Name = "SecondForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "Students";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grdTeachers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStudents)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -288,12 +318,15 @@
         private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.DataGridView grdTeachers;
+        private System.Windows.Forms.DataGridView grdStudents;
         private System.Windows.Forms.Label lblGuid;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label lblTGuid;
+        private System.Windows.Forms.Label lblTId;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tchFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tchAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherId;
     }
 }
 

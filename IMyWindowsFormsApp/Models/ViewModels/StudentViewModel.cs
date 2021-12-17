@@ -11,6 +11,6 @@ namespace IMyWindowsFormsApp.Models.ViewModels
         public Guid Id { get; set; }
         public string FullName { get; set; }
         public int Age { get; set; }
-        public Guid teacherId { get; set; }
+        public Guid TeacherId { get; set; }
     }
 }

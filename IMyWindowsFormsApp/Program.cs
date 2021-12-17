@@ -24,7 +24,7 @@ namespace IMyWindowsFormsApp
             ITeacherRepository teacherRepository = new TeacherRepository(dbContext);
             ITeacherService teacherService = new TeacherService(teacherRepository);
 
-            Application.Run(new MainForm(teacherService));
+            Application.Run(new MainForm(teacherService, studentService));
         }
     }
 }
