@@ -41,11 +41,11 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.grdTeachers = new System.Windows.Forms.DataGridView();
+            this.lblGuid = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tchFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tchAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblGuid = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.grdTeachers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -183,39 +183,10 @@
             this.grdTeachers.ReadOnly = true;
             this.grdTeachers.RowHeadersVisible = false;
             this.grdTeachers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdTeachers.Size = new System.Drawing.Size(586, 273);
+            this.grdTeachers.Size = new System.Drawing.Size(609, 273);
             this.grdTeachers.TabIndex = 22;
             this.grdTeachers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTeachers_CellClick);
             this.grdTeachers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTeachers_CellDoubleClick);
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.id.DataPropertyName = "Id";
-            this.id.FillWeight = 11F;
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // tchFullName
-            // 
-            this.tchFullName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tchFullName.DataPropertyName = "FullName";
-            this.tchFullName.FillWeight = 7F;
-            this.tchFullName.HeaderText = "Name";
-            this.tchFullName.Name = "tchFullName";
-            this.tchFullName.ReadOnly = true;
-            this.tchFullName.Width = 215;
-            // 
-            // tchAge
-            // 
-            this.tchAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tchAge.DataPropertyName = "Age";
-            this.tchAge.FillWeight = 2F;
-            this.tchAge.HeaderText = "Age";
-            this.tchAge.Name = "tchAge";
-            this.tchAge.ReadOnly = true;
-            this.tchAge.Width = 68;
             // 
             // lblGuid
             // 
@@ -252,15 +223,41 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grdTeachers);
-            this.splitContainer1.Size = new System.Drawing.Size(586, 553);
+            this.splitContainer1.Size = new System.Drawing.Size(609, 553);
             this.splitContainer1.SplitterDistance = 276;
             this.splitContainer1.TabIndex = 24;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "Id";
+            this.id.FillWeight = 10F;
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // tchFullName
+            // 
+            this.tchFullName.DataPropertyName = "FullName";
+            this.tchFullName.FillWeight = 5F;
+            this.tchFullName.HeaderText = "Name";
+            this.tchFullName.Name = "tchFullName";
+            this.tchFullName.ReadOnly = true;
+            // 
+            // tchAge
+            // 
+            this.tchAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.tchAge.DataPropertyName = "Age";
+            this.tchAge.FillWeight = 3F;
+            this.tchAge.HeaderText = "Age";
+            this.tchAge.Name = "tchAge";
+            this.tchAge.ReadOnly = true;
+            this.tchAge.Width = 68;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 553);
+            this.ClientSize = new System.Drawing.Size(609, 553);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainForm";
             this.Text = "Teachers";

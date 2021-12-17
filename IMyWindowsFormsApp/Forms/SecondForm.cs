@@ -42,20 +42,21 @@ namespace IMyWindowsFormsApp
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Student teacher = _studentService.Get(Guid.Parse(grdStudents.SelectedRows[0].Cells["Id"].Value.ToString()));
-            _studentService.Remove(teacher);
+            Student student = _studentService.Get(Guid.Parse(grdStudents.SelectedRows[0].Cells["Id"].Value.ToString()));
+            _studentService.Remove(student);
             RefreshStudents();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Student teacher = new Student
+            Student student = new Student
             {
                 Id = Guid.Parse(lblGuid.Text),
                 LastName = txtLastName.Text,
                 FirstName = txtFirstName.Text,
-                Age = Convert.ToInt32(txtAge.Text)
+                Age = Convert.ToInt32(txtAge.Text),
+                TeacherId = Guid.Parse(lblTGuid.Text)
             };
-            _studentService.Update(teacher);
+            _studentService.Update(student);
             RefreshStudents();
         }
         private void grdStudents_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -69,6 +70,7 @@ namespace IMyWindowsFormsApp
             if (grdStudents.Rows.Count > 0)
             {
                 grdStudents.Rows[0].Selected = true;
+                ShowRow();
             }
         }
         private void ShowRow()
